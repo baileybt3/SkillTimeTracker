@@ -1,0 +1,16 @@
+D:\Projects\CSharp\SkillTimeTracker\bin\Debug\net9.0-windows\SkillTimeTracker.exe
+D:\Projects\CSharp\SkillTimeTracker\bin\Debug\net9.0-windows\SkillTimeTracker.deps.json
+D:\Projects\CSharp\SkillTimeTracker\bin\Debug\net9.0-windows\SkillTimeTracker.runtimeconfig.json
+D:\Projects\CSharp\SkillTimeTracker\bin\Debug\net9.0-windows\SkillTimeTracker.dll
+D:\Projects\CSharp\SkillTimeTracker\bin\Debug\net9.0-windows\SkillTimeTracker.pdb
+D:\Projects\CSharp\SkillTimeTracker\obj\Debug\net9.0-windows\SkillTimeTracker.Form1.resources
+D:\Projects\CSharp\SkillTimeTracker\obj\Debug\net9.0-windows\SkillTimeTracker.csproj.GenerateResource.cache
+D:\Projects\CSharp\SkillTimeTracker\obj\Debug\net9.0-windows\SkillTimeTracker.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\CSharp\SkillTimeTracker\obj\Debug\net9.0-windows\SkillTimeTracker.AssemblyInfoInputs.cache
+D:\Projects\CSharp\SkillTimeTracker\obj\Debug\net9.0-windows\SkillTimeTracker.AssemblyInfo.cs
+D:\Projects\CSharp\SkillTimeTracker\obj\Debug\net9.0-windows\SkillTimeTracker.csproj.CoreCompileInputs.cache
+D:\Projects\CSharp\SkillTimeTracker\obj\Debug\net9.0-windows\SkillTimeTracker.dll
+D:\Projects\CSharp\SkillTimeTracker\obj\Debug\net9.0-windows\refint\SkillTimeTracker.dll
+D:\Projects\CSharp\SkillTimeTracker\obj\Debug\net9.0-windows\SkillTimeTracker.pdb
+D:\Projects\CSharp\SkillTimeTracker\obj\Debug\net9.0-windows\SkillTimeTracker.genruntimeconfig.cache
+D:\Projects\CSharp\SkillTimeTracker\obj\Debug\net9.0-windows\ref\SkillTimeTracker.dll
