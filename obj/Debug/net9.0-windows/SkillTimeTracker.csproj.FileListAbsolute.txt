@@ -14,3 +14,4 @@ D:\Projects\CSharp\SkillTimeTracker\obj\Debug\net9.0-windows\refint\SkillTimeTra
 D:\Projects\CSharp\SkillTimeTracker\obj\Debug\net9.0-windows\SkillTimeTracker.pdb
 D:\Projects\CSharp\SkillTimeTracker\obj\Debug\net9.0-windows\SkillTimeTracker.genruntimeconfig.cache
 D:\Projects\CSharp\SkillTimeTracker\obj\Debug\net9.0-windows\ref\SkillTimeTracker.dll
+D:\Projects\CSharp\SkillTimeTracker\obj\Debug\net9.0-windows\SkillTimeTracker.sourcelink.json

@@ -20,6 +20,12 @@ namespace SkillTimeTracker
             SetupListView();
             LoadSkills();
             SetupTimer();
+
+            // Enable drag/drop reordering
+            listViewSkills.AllowDrop = true;
+            listViewSkills.ItemDrag += ListViewSkills_ItemDrag;
+            listViewSkills.DragEnter += ListViewSkills_DragEnter;
+            listViewSkills.DragDrop += ListViewSkills_DragDrop;
         }
 
         // === Setup ListView (columns for Skill and Time) ===
@@ -46,7 +52,6 @@ namespace SkillTimeTracker
         {
             if (!string.IsNullOrEmpty(currentSkill) && stopwatch.IsRunning)
             {
-                // Update UI with current running time
                 var runningTime = skillTimes[currentSkill] + stopwatch.Elapsed;
                 UpdateListView(currentSkill, runningTime);
             }
@@ -63,14 +68,26 @@ namespace SkillTimeTracker
             }
         }
 
-        // === Start Timer ===
+        // === Start Skill ===
+        private void StartSkill(string skill)
+        {
+            // Commit previous skill time before switching
+            if (!string.IsNullOrEmpty(currentSkill) && stopwatch.IsRunning)
+            {
+                skillTimes[currentSkill] += stopwatch.Elapsed;
+                stopwatch.Reset();
+            }
+
+            currentSkill = skill;
+            stopwatch.Start();
+            uiTimer.Start();
+        }
+
         private void btnStart_Click(object sender, EventArgs e)
         {
             if (listViewSkills.SelectedItems.Count == 0) return;
-
-            currentSkill = listViewSkills.SelectedItems[0].Text;
-            stopwatch.Restart();
-            uiTimer.Start();
+            string selectedSkill = listViewSkills.SelectedItems[0].Text;
+            StartSkill(selectedSkill);
         }
 
         // === Stop Timer ===
@@ -86,15 +103,17 @@ namespace SkillTimeTracker
             currentSkill = "";
         }
 
-        // === Save & Exit ===
+        // === Save ===
         private void btnSave_Click(object sender, EventArgs e)
         {
             using StreamWriter sw = new(saveFile);
             foreach (var kv in skillTimes)
             {
-                sw.WriteLine($"{kv.Key}|{kv.Value}");
+                sw.WriteLine($"{kv.Key}|{kv.Value.Ticks}");
             }
-            Application.Exit();
+
+            MessageBox.Show("Skills saved successfully!", "Save",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         // === Load saved skills ===
@@ -105,9 +124,9 @@ namespace SkillTimeTracker
             foreach (var line in File.ReadAllLines(saveFile))
             {
                 var parts = line.Split('|');
-                if (parts.Length == 2 && TimeSpan.TryParse(parts[1], out var time))
+                if (parts.Length == 2 && long.TryParse(parts[1], out long ticks))
                 {
-                    skillTimes[parts[0]] = time;
+                    skillTimes[parts[0]] = new TimeSpan(ticks);
                 }
             }
             UpdateListView();
@@ -155,6 +174,45 @@ namespace SkillTimeTracker
                 skillTimes.Remove(skill);
                 UpdateListView();
             }
+        }
+
+        // === Drag/Drop Reordering ===
+        private void ListViewSkills_ItemDrag(object sender, ItemDragEventArgs e)
+        {
+            listViewSkills.DoDragDrop(e.Item, DragDropEffects.Move);
+        }
+
+        private void ListViewSkills_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(typeof(ListViewItem)))
+                e.Effect = DragDropEffects.Move;
+        }
+
+        private void ListViewSkills_DragDrop(object sender, DragEventArgs e)
+        {
+            Point cp = listViewSkills.PointToClient(new Point(e.X, e.Y));
+            ListViewItem target = listViewSkills.GetItemAt(cp.X, cp.Y);
+            ListViewItem dragged = (ListViewItem)e.Data.GetData(typeof(ListViewItem));
+
+            if (target == null || dragged == null || target == dragged) return;
+
+            int targetIndex = target.Index;
+            listViewSkills.Items.Remove(dragged);
+            listViewSkills.Items.Insert(targetIndex, dragged);
+
+            // Re-sync dictionary with new order
+            ReorderDictionary();
+        }
+
+        private void ReorderDictionary()
+        {
+            var newDict = new Dictionary<string, TimeSpan>();
+            foreach (ListViewItem item in listViewSkills.Items)
+            {
+                if (skillTimes.TryGetValue(item.Text, out var t))
+                    newDict[item.Text] = t;
+            }
+            skillTimes = newDict;
         }
     }
 }
