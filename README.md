@@ -1,6 +1,6 @@
-# Skill Time Tracker ⏱️📚
+# Skill Time Tracker ⏱️
 
-The **Skill Time Tracker** is a lightweight desktop application built with **C# and WinForms** that helps you measure and manage the time you dedicate to different skills — just like tracking hours in your favorite video game, but for personal growth.  
+The **Skill Time Tracker** is a lightweight desktop application built with **C# and WinForms** that helps you measure and manage the time you dedicate to different skills, just like tracking hours in your favorite video game, but for personal growth.  
 
 You can start and stop timers for any skill (e.g., coding, drumming, workouts), view your total time spent, and save progress automatically between sessions.  
 
