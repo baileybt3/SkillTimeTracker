@@ -5,6 +5,7 @@ The **Skill Time Tracker** is a lightweight desktop application built with **C# 
 You can start and stop timers for any skill (e.g., coding, drumming, workouts), view your total time spent, and save progress automatically between sessions.  
 
 ---
+<img width="802" height="482" alt="SkillTrackerDemo" src="https://github.com/user-attachments/assets/aba085f9-b071-427e-83f5-3ac1bb6bf964" />
 
 ## 📌 Features
 
